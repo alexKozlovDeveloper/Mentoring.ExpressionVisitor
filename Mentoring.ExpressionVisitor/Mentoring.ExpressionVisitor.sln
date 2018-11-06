@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.ExpressionVisitor", "Mentoring.ExpressionVisitor\Mentoring.ExpressionVisitor.csproj", "{A8AA8E0F-E076-437D-B18E-670FAC3FBEFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8AA8E0F-E076-437D-B18E-670FAC3FBEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8AA8E0F-E076-437D-B18E-670FAC3FBEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8AA8E0F-E076-437D-B18E-670FAC3FBEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8AA8E0F-E076-437D-B18E-670FAC3FBEFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F00097D-EFA5-4CFE-A57B-6B0FB6C37F2C}
+	EndGlobalSection
+EndGlobal
