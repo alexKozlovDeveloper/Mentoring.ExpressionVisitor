@@ -9,39 +9,61 @@ namespace Mentoring.MyExpressionVisitor
 {
     public class ParamReplaceVisitor : ExpressionVisitor
     {
-        //override 
+        private Dictionary<string, int> _replaceParams;
+
+        public ParamReplaceVisitor()
+        {
+
+        }
+
+        public ParamReplaceVisitor(Dictionary<string,int> replaceParams)
+        {
+            _replaceParams = replaceParams;
+        }
+
         protected override Expression VisitBinary(BinaryExpression node)
         {
-            //var parameter = GetParameter(node);
-            //var constant = GetConstant(node);
+            var left = CheckParam(node.Left);
+            var right = CheckParam(node.Right);
 
-            //if (parameter == null || constant == null)
-            //{
-            //    return base.VisitBinary(node);
-            //}
-
-            //if (node.NodeType == ExpressionType.Add)
-            //{
-            //    if (constant.Type == typeof(int) && (int)constant.Value == 1)
-            //    {
-            //        return Expression.Increment(parameter);
-            //    }
-            //}
-
-            //if (node.NodeType == ExpressionType.Subtract)
-            //{
-            //    if (constant.Type == typeof(int) && (int)constant.Value == 1)
-            //    {
-            //        if (node.Left.NodeType == ExpressionType.Parameter)
-            //        {
-            //            return Expression.Decrement(parameter);
-            //        }
-            //    }
-            //}
+            node = node.Update(left, node.Conversion, right);
 
             return base.VisitBinary(node);
         }
 
-        
+        private Expression CheckParam(Expression exp)
+        {
+            if (exp.NodeType != ExpressionType.Parameter)
+            {
+                return exp;
+            }
+
+            var param = exp as ParameterExpression;
+
+            if (_replaceParams.Keys.Contains(param.Name) == false)
+            {
+                return exp;
+            }
+
+            var value = _replaceParams[param.Name];
+
+            return Expression.Constant(value);
+        }
+
+
+        //private ParameterExpression GetParameter(BinaryExpression node)
+        //{
+        //    if (node.Left.NodeType == ExpressionType.Parameter)
+        //    {
+        //        return node.Left as ParameterExpression;
+        //    }
+
+        //    if (node.Right.NodeType == ExpressionType.Parameter)
+        //    {
+        //        return node.Right as ParameterExpression;
+        //    }
+
+        //    return null;
+        //}
     }
 }

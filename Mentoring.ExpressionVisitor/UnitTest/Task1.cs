@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using Mentoring.MyExpressionVisitor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,6 +17,22 @@ namespace UnitTest
             Console.WriteLine(exp1);
 
             var exp2 = (new IncDecVisitor().VisitAndConvert(exp1, ""));
+
+            Console.WriteLine(exp2);
+        }
+
+        [TestMethod]
+        public void TestParam()
+        {
+            Expression<Func<int, int>> exp1 = (a) => a + 2 + (a + 2);
+
+            Console.WriteLine(exp1);
+
+            var replaceParams = new Dictionary<string, int>();
+
+            replaceParams.Add("a", 99);
+
+            var exp2 = (new ParamReplaceVisitor(replaceParams).VisitAndConvert(exp1, ""));
 
             Console.WriteLine(exp2);
         }
